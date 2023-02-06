@@ -4,6 +4,7 @@ import { format, subDays } from 'date-fns';
 import { map, Observable, of } from 'rxjs';
 import { Game, Stats, Team } from './data.models';
 import { Conference } from './shared/interfaces/conference.interface';
+import { Division } from './shared/interfaces/division.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -97,6 +98,17 @@ export class NbaService {
     return of([
       { label: 'Western', value: 'West' },
       { label: 'Eastern', value: 'East' },
+    ])
+  }
+
+  getDivisions(): Observable<Division[]> {
+    return of([
+      { label: 'Atlantic', value: 'Atlantic', conference: 'East' },
+      { label: 'Central', value: 'Central', conference: 'East' },
+      { label: 'Southeast', value: 'Southeast', conference: 'East' },
+      { label: 'Northwest', value: 'Northwest', conference: 'West' },
+      { label: 'Pacific', value: 'Pacific', conference: 'West' },
+      { label: 'Southwest', value: 'Southwest', conference: 'West' },
     ])
   }
 }

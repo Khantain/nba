@@ -1,4 +1,5 @@
-export interface Conference {
-  label: string;
-  value: string;
-}
+import { Option } from "./option.interface";
+
+export interface Conference extends Option {
+  value: 'East' | 'West';
+ }

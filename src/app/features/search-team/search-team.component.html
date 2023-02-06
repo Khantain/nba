@@ -1,0 +1,11 @@
+<ng-template #conferenceTemplate let-conference>{{conference.label}}</ng-template>
+<app-select [options]="service.conferences$ | async" placeholder="Conferences" [optionTemplate]="conferenceTemplate"
+  (selectionChange)="service.onConferenceChange($event)"></app-select>
+
+<ng-template #divisionTemplate let-division>{{division.label}}</ng-template>
+<app-select [options]="service.divisions$ | async" placeholder="Divisions" [optionTemplate]="divisionTemplate"
+  (selectionChange)="service.onDivisionChange($event)"></app-select>
+
+<ng-template #optionTeamTemplate let-team>{{team.full_name}}</ng-template>
+<app-select [options]="service.teams$ | async" placeholder="Teams" [optionTemplate]="optionTeamTemplate"
+  (selectionChange)="setTeam($event)"></app-select>

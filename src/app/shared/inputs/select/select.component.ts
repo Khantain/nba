@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectComponent<T> {
   protected _options: T[] | null = [];

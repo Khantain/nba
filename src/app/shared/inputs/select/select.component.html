@@ -1,0 +1,5 @@
+<select (change)="onChangeSelect()" [(ngModel)]="value">
+  <option *ngFor="let option of options" [value]="option">
+    <ng-container *ngTemplateOutlet="option.template; context: {$implicit: option}"></ng-container>
+  </option>
+</select>

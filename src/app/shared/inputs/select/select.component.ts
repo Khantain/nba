@@ -1,44 +1,28 @@
-import { Component, EventEmitter, forwardRef, Input, Output, TemplateRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-type Option = {
-  template: TemplateRef<any>,
-};
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SelectComponent),
-      multi: true,
-    }
-  ]
 })
-export class SelectComponent implements ControlValueAccessor {
-  private onChange!: Function;
-  private onTouched!: Function;
+export class SelectComponent<T> {
+  protected _options: T[] | null = [];
+  protected selectedOption: T | null = null;
 
-  protected value: Option | null = null;
+  @Input() placeholder = 'Select an option';
+  @Input() optionTemplate!: TemplateRef<any>;
 
-  @Input() options!: Option[];
+  @Input()
+  set options(value: T[] | null) {
+    this._options = value;
+    if (this.selectedOption && !this._options?.includes(this.selectedOption))
+      this.onChangeSelect(null);
+  };
 
-  @Output() selectionChange = new EventEmitter<Option>();
+  @Output() selectionChange = new EventEmitter();
 
-  onChangeSelect(): void {
-    this.onChange(this.value);
-  }
-
-  writeValue(obj: any): void {
-    this.value = obj;
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+  onChangeSelect(newValue: T | null): void {
+    this.selectedOption = newValue;
+    this.selectionChange.emit(newValue);
   }
 }

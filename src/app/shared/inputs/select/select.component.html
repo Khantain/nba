@@ -1,5 +1,10 @@
-<select (change)="onChangeSelect()" [(ngModel)]="value">
-  <option *ngFor="let option of options" [value]="option">
-    <ng-container *ngTemplateOutlet="option.template; context: {$implicit: option}"></ng-container>
+<select [ngModel]="selectedOption" (ngModelChange)="onChangeSelect($event)">
+  <option [ngValue]="null">{{ placeholder }}</option>
+
+  <option *ngFor="let option of _options" [ngValue]="option">
+    <ng-container *ngTemplateOutlet="optionTemplate || defaultTemplate; context: {$implicit: option}"></ng-container>
+
+    <!-- Default Template if not provided by the host -->
+    <ng-template #defaultTemplate let-option>{{ option }}</ng-template>
   </option>
 </select>

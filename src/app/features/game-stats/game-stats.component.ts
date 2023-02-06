@@ -1,32 +1,59 @@
-import { AfterViewInit, Component, TemplateRef, ViewChild } from '@angular/core';
-import { map, Observable, of, tap } from 'rxjs';
+import { Component } from '@angular/core';
+import { first, map, Observable, Subject, tap } from 'rxjs';
 import { Team } from 'src/app/data.models';
 import { NbaService } from 'src/app/nba.service';
+import { Conference } from 'src/app/shared/interfaces/conference.interface';
 
 @Component({
   selector: 'app-game-stats',
   templateUrl: './game-stats.component.html',
   styleUrls: ['./game-stats.component.css']
 })
-export class GameStatsComponent implements AfterViewInit {
+export class GameStatsComponent {
+  private teamsSubject = new Subject<void>();
 
-  @ViewChild('optionTemplate') optionTemplate!: TemplateRef<any>;
+  teams$: Observable<Team[]> = this.teamsSubject.pipe(
+    map(() => {
+      if (this.selectedConference)
+        return this.allTeams.filter(t => t.conference === this.selectedConference?.value)
+      return this.allTeams;
+    })
+  );
 
-  teams$: Observable<Team[]> = of([]);
+  conferences$: Observable<Conference[]> = this.nbaService.getConferences();
+
+  selectedTeam: Team | null = null;
+  selectedConference: Conference | null = null;
   allTeams: Team[] = [];
 
-  constructor(protected nbaService: NbaService) { }
-
-  ngAfterViewInit() {
-    this.teams$ = this.nbaService.getAllTeams().pipe(
-      tap(data => this.allTeams = data),
-      map(teams => teams.map(t => ({ ...t, template: this.optionTemplate })))
-    );
+  constructor(protected nbaService: NbaService) {
   }
 
-  trackTeam(teamId: string): void {
-    let team = this.allTeams.find(team => team.id == Number(teamId));
-    if (team)
-      this.nbaService.addTrackedTeam(team);
+  ngOnInit() {
+    this.nbaService.getAllTeams().pipe(
+      first(),
+      tap(teams => {
+        this.allTeams = teams;
+        this.updateAvailableTeams();
+      }),
+    ).subscribe();
+  }
+
+  trackTeam(): void {
+    if (this.selectedTeam)
+      this.nbaService.addTrackedTeam(this.selectedTeam);
+  }
+
+  setTeam(team: Team) {
+    this.selectedTeam = team;
+  }
+
+  onConferenceChange(selectedConference: Conference) {
+    this.selectedConference = selectedConference;
+    this.updateAvailableTeams();
+  }
+
+  private updateAvailableTeams() {
+    this.teamsSubject.next();
   }
 }

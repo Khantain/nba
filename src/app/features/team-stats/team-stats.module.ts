@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { TeamStatsComponent } from './team-stats.component';
 
 @NgModule({
@@ -11,6 +12,7 @@ import { TeamStatsComponent } from './team-stats.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
   ]
 })
 export class TeamStatsModule { }

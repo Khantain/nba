@@ -1,3 +1,6 @@
-<div *ngIf="!isDisplayed" class="modal">
-  <div class="modal-content">Test</div>
+<div *ngIf="modalService.modal$ | async as config" class="modal">
+  <div class="modal-content">
+    <ng-container *ngTemplateOutlet="config.template"></ng-container>
+    <button *ngFor="let action of config.actions" (click)="onButtonClick(action)">{{ action.label }}</button>
+  </div>
 </div>

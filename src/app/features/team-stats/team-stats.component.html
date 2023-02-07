@@ -1,6 +1,6 @@
 <div class="card" *ngIf="games$ | async as games">
   <div>
-    <h3>{{team.full_name}} [{{team.abbreviation}}] <span (click)="nbaService.removeTrackedTeam(team)">&times;</span></h3>
+    <h3>{{team.full_name}} [{{team.abbreviation}}] <span (click)="remove(team)">&times;</span></h3>
     <h6>{{team.conference}}ern conference</h6>
   </div>
   <hr/>
@@ -25,5 +25,9 @@
   <div>
     <button class="tertiary" [routerLink]=" 'results/'+ team.abbreviation">See game results >></button>
   </div>
-
 </div>
+
+
+<ng-template #modal>
+  <div class="modal-confirm">Are you sure you want to remove this team ?</div>
+</ng-template>

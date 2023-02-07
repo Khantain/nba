@@ -3,7 +3,8 @@
   margin: 5px;
   display: block;
 }
-span{
+
+span {
   float: right;
   cursor: pointer;
 }
@@ -23,4 +24,10 @@ mark {
 
 .card {
   max-width: 100%;
+}
+
+.modal-confirm {
+  padding-bottom: 20px;
+  font-weight: 400;
+  color: grey;
 }

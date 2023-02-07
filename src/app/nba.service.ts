@@ -25,7 +25,7 @@ export class NbaService {
   }
 
   removeTrackedTeam(team: Team): void {
-    let index = this.trackedTeams.findIndex(t => t.id == team.id);
+    const index = this.trackedTeams.findIndex(t => t.id == team.id);
     this.trackedTeams.splice(index, 1);
   }
 
@@ -41,7 +41,7 @@ export class NbaService {
   }
 
   getLastResults(team: Team, numberOfDays = 12): Observable<Game[]> {
-    return this.http.get<{ meta: any, data: Game[] }>(`${this.API_URL}/games?page=0${this.getDaysQueryString(numberOfDays)}`,
+    return this.http.get<{ meta: unknown, data: Game[] }>(`${this.API_URL}/games?page=0${this.getDaysQueryString(numberOfDays)}`,
       { headers: this.headers, params: { per_page: 12, "team_ids[]": "" + team.id } }).pipe(
         map(res => res.data)
       );
@@ -65,7 +65,7 @@ export class NbaService {
   private getDaysQueryString(nbOfDays = 12): string {
     let qs = "";
     for (let i = 1; i < nbOfDays; i++) {
-      let date = format(subDays(new Date(), i), "yyyy-MM-dd")
+      const date = format(subDays(new Date(), i), "yyyy-MM-dd")
       qs = qs.concat("&dates[]=" + date);
     }
     return qs;

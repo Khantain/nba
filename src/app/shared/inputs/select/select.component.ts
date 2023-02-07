@@ -11,14 +11,14 @@ export class SelectComponent<T> {
   protected selectedOption: T | null = null;
 
   @Input() placeholder = 'Select an option';
-  @Input() optionTemplate!: TemplateRef<any>;
+  @Input() optionTemplate!: TemplateRef<unknown>;
 
   @Input()
   set options(value: T[] | null) {
     this._options = value;
     if (this.selectedOption && !this._options?.includes(this.selectedOption))
       this.onChangeSelect(null);
-  };
+  }
 
   @Output() selectionChange = new EventEmitter();
 

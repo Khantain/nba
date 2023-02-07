@@ -26,16 +26,16 @@ export class SearchTeamService {
     this.init().subscribe();
   }
 
-  private init(): Observable<unknown> {
+  private init(): Observable<[Team[], Division[]]> {
     return this.loadData().pipe(
       tap(() => {
         this.updateDivisions();
         this.updateTeams();
       })
-    )
+    );
   }
 
-  private loadData(): Observable<any> {
+  private loadData(): Observable<[Team[], Division[]]> {
     return forkJoin([this.loadTeams(), this.loadDivisions()]);
   }
 
@@ -60,7 +60,7 @@ export class SearchTeamService {
       return this.allDivisions.filter(d => d.conference === this.selectedConference?.value)
 
     return this.allDivisions;
-  };
+  }
 
   private updateTeams() {
     this.teamsSubject.next(this.getFilteredTeams());
@@ -74,7 +74,7 @@ export class SearchTeamService {
       return this.allTeams.filter(t => t.conference === this.selectedConference?.value)
 
     return this.allTeams;
-  };
+  }
 
   onConferenceChange(selectedConference: Conference) {
     this.selectedConference = selectedConference;

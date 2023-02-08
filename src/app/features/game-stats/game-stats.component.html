@@ -6,8 +6,18 @@
   </div>
 
 </div>
-<div class="row">
-  <app-team-stats class="col-sm-4" *ngFor="let team of nbaService.getTrackedTeams()" [team]="team">
+<div class="col">
+  <div>
+    <ng-template #template let-numberOfDays>{{ numberOfDays }}</ng-template>
+    See results of the last
+    <app-select [options]="numberOfDaysOptions$ | async" [optionTemplate]="template" [defaultValue]="nbaService.numberOfDays$ | async"
+      (selectionChange)="nbaService.setNumberOfDays($event)"></app-select>
+    days
+  </div>
 
-  </app-team-stats>
+  <div class="row">
+    <app-team-stats class="col-sm-4" *ngFor="let team of nbaService.getTrackedTeams()" [team]="team">
+
+    </app-team-stats>
+  </div>
 </div>

@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-sm-6">
         <p>
-          Results of past 12 days:
+          Results of past {{ nbaService.numberOfDays$ | async }} days:
         </p>
         <p>
           <mark class="tag" *ngFor="let result of stats.lastGames" [class]="result">{{result}}</mark>

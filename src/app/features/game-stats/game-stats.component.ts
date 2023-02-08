@@ -9,6 +9,7 @@ import { NbaService } from 'src/app/nba.service';
 })
 export class GameStatsComponent {
   selectedTeam: Team | undefined;
+  numberOfDaysOptions$ = this.nbaService.getNumberOfDaysForResultsOptions();
 
   constructor(protected nbaService: NbaService) { }
 

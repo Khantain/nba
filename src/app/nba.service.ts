@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { format, subDays } from 'date-fns';
-import { map, Observable, of } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, switchMap } from 'rxjs';
 import { Game, Stats, Team } from './data.models';
 import { Conference } from './shared/interfaces/conference.interface';
 import { Division } from './shared/interfaces/division.interface';
@@ -10,18 +10,25 @@ import { Division } from './shared/interfaces/division.interface';
   providedIn: 'root'
 })
 export class NbaService {
-
   private headers = {
     'X-RapidAPI-Key': '2QMXSehDLSmshDmRQcKUIAiQjIZAp1UvKUrjsnewgqSP6F5oBX',
     'X-RapidAPI-Host': 'free-nba.p.rapidapi.com'
   };
   private API_URL = "https://free-nba.p.rapidapi.com";
+
+  private numberOfDaysSubject = new BehaviorSubject<number>(12);
+  numberOfDays$ = this.numberOfDaysSubject.asObservable();
+
   trackedTeams: Team[] = [];
 
   constructor(private http: HttpClient) { }
 
   addTrackedTeam(team: Team): void {
     this.trackedTeams.push(team);
+  }
+
+  setNumberOfDays(numberOfDays: number) {
+    this.numberOfDaysSubject.next(numberOfDays);
   }
 
   removeTrackedTeam(team: Team): void {
@@ -40,11 +47,16 @@ export class NbaService {
       );
   }
 
-  getLastResults(team: Team, numberOfDays = 12): Observable<Game[]> {
-    return this.http.get<{ meta: unknown, data: Game[] }>(`${this.API_URL}/games?page=0${this.getDaysQueryString(numberOfDays)}`,
-      { headers: this.headers, params: { per_page: 12, "team_ids[]": "" + team.id } }).pipe(
-        map(res => res.data)
-      );
+  getLastResults(team: Team): Observable<Game[]> {
+    return this.numberOfDays$.pipe(
+      switchMap(days => {
+        return this.http.get<{ meta: unknown, data: Game[] }>(
+          `${this.API_URL}/games?page=0${this.getDaysQueryString(days)}`,
+          { headers: this.headers, params: { per_page: 12, "team_ids[]": "" + team.id } }
+        );
+      }),
+      map(res => res.data)
+    );
   }
 
   getStatsFromGames(games: Game[], team: Team): Stats {
@@ -110,5 +122,9 @@ export class NbaService {
       { label: 'Pacific', value: 'Pacific', conference: 'West' },
       { label: 'Southwest', value: 'Southwest', conference: 'West' },
     ])
+  }
+
+  getNumberOfDaysForResultsOptions(): Observable<number[]> {
+    return of([6, 12, 20]);
   }
 }

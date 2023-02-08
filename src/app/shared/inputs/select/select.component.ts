@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-select',
@@ -6,11 +6,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, Templa
   styleUrls: ['./select.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectComponent<T> {
+export class SelectComponent<T> implements OnInit {
   protected _options: T[] | null = [];
   protected selectedOption: T | null = null;
 
   @Input() placeholder = 'Select an option';
+  @Input() defaultValue: T | null = null;
   @Input() optionTemplate!: TemplateRef<unknown>;
 
   @Input()
@@ -21,6 +22,10 @@ export class SelectComponent<T> {
   }
 
   @Output() selectionChange = new EventEmitter();
+
+  ngOnInit() {
+    this.selectedOption = this.defaultValue;
+  }
 
   onChangeSelect(newValue: T | null): void {
     this.selectedOption = newValue;

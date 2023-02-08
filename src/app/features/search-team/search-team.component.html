@@ -7,5 +7,5 @@
   (selectionChange)="service.onDivisionChange($event)"></app-select>
 
 <ng-template #optionTeamTemplate let-team>{{team.full_name}}</ng-template>
-<app-select [options]="service.teams$ | async" placeholder="Teams" [optionTemplate]="optionTeamTemplate"
+<app-select [options]="service.teams$ | async" [optionTemplate]="optionTeamTemplate"
   (selectionChange)="setTeam($event)"></app-select>

@@ -108,19 +108,19 @@ export class NbaService {
 
   getConferences(): Observable<Conference[]> {
     return of([
-      { label: 'Western', value: 'West' },
-      { label: 'Eastern', value: 'East' },
+      { label: 'Western Conference', value: 'West' },
+      { label: 'Eastern Conference', value: 'East' },
     ])
   }
 
   getDivisions(): Observable<Division[]> {
     return of([
-      { label: 'Atlantic', value: 'Atlantic', conference: 'East' },
-      { label: 'Central', value: 'Central', conference: 'East' },
-      { label: 'Southeast', value: 'Southeast', conference: 'East' },
-      { label: 'Northwest', value: 'Northwest', conference: 'West' },
-      { label: 'Pacific', value: 'Pacific', conference: 'West' },
-      { label: 'Southwest', value: 'Southwest', conference: 'West' },
+      { label: 'Atlantic Division', value: 'Atlantic', conference: 'East' },
+      { label: 'Central Division', value: 'Central', conference: 'East' },
+      { label: 'Southeast Division', value: 'Southeast', conference: 'East' },
+      { label: 'Northwest Division', value: 'Northwest', conference: 'West' },
+      { label: 'Pacific Division', value: 'Pacific', conference: 'West' },
+      { label: 'Southwest Division', value: 'Southwest', conference: 'West' },
     ])
   }
 

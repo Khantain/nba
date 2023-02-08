@@ -1,5 +1,5 @@
 <select [ngModel]="selectedOption" (ngModelChange)="onChangeSelect($event)">
-  <option *ngIf="!defaultValue" [ngValue]="null">{{ placeholder }}</option>
+  <option *ngIf="placeholder" [ngValue]="null">{{ placeholder }}</option>
 
   <option *ngFor="let option of _options" [ngValue]="option">
     <ng-container *ngTemplateOutlet="optionTemplate || defaultTemplate; context: {$implicit: option}"></ng-container>

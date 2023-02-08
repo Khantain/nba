@@ -10,7 +10,7 @@ export class SelectComponent<T> implements OnInit {
   protected _options: T[] | null = [];
   protected selectedOption: T | null = null;
 
-  @Input() placeholder = 'Select an option';
+  @Input() placeholder?: string;
   @Input() defaultValue: T | null = null;
   @Input() optionTemplate!: TemplateRef<unknown>;
 

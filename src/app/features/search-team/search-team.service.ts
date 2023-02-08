@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { forkJoin, Observable, Subject, tap } from "rxjs";
-import { Team } from "src/app/data.models";
+import { Team } from "src/app/shared/interfaces/data.models";
 import { NbaService } from "src/app/nba.service";
 import { Conference } from "src/app/shared/interfaces/conference.interface";
 import { Division } from "src/app/shared/interfaces/division.interface";

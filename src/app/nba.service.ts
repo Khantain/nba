@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { format, subDays } from 'date-fns';
 import { BehaviorSubject, map, Observable, of, switchMap } from 'rxjs';
-import { Game, Stats, Team } from './data.models';
+import { Game, Stats, Team } from './shared/interfaces/data.models';
 import { Conference } from './shared/interfaces/conference.interface';
 import { Division } from './shared/interfaces/division.interface';
 

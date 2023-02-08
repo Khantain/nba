@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Team } from 'src/app/data.models';
+import { Team } from 'src/app/shared/interfaces/data.models';
 import { SearchTeamService } from './search-team.service';
 
 @Component({

@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Game, Team } from 'src/app/data.models';
+import { Game, Team } from 'src/app/shared/interfaces/data.models';
 import { NbaService } from 'src/app/nba.service';
 
 @Component({
   selector: 'app-game-results',
   templateUrl: './game-results.component.html',
-  styleUrls: ['./game-results.component.css']
+  styleUrls: ['./game-results.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameResultsComponent {
 

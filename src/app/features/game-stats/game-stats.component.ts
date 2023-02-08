@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Team } from 'src/app/data.models';
+import { Team } from 'src/app/shared/interfaces/data.models';
 import { NbaService } from 'src/app/nba.service';
 
 @Component({

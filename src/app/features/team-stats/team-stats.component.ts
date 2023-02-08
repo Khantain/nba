@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { NbaService } from '../../nba.service';
-import { Game, Stats, Team } from '../../data.models';
+import { Game, Stats, Team } from '../../shared/interfaces/data.models';
 import { ModalService } from 'src/app/core/modal/modal.service';
 
 @Component({

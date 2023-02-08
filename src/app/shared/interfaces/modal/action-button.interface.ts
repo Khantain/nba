@@ -1,4 +1,6 @@
+import { TemplateRef } from "@angular/core";
+
 export interface ActionButton {
-  label: string,
-  action?: Function,
+  template: TemplateRef<unknown>,
+  action?: () => unknown,
 }

@@ -1,4 +1,4 @@
-import { Injectable, TemplateRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ModalConfig } from 'src/app/shared/interfaces/modal/modal-config.interface';
 

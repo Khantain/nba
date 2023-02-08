@@ -8,4 +8,4 @@
 
 <ng-template #optionTeamTemplate let-team>{{team.full_name}}</ng-template>
 <app-select [options]="service.teams$ | async" [optionTemplate]="optionTeamTemplate"
-  (selectionChange)="setTeam($event)"></app-select>
+  (selectionChange)="emitSelectedTeam($event)"></app-select>

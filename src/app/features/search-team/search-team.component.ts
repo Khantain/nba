@@ -13,7 +13,7 @@ export class SearchTeamComponent {
 
   constructor(protected service: SearchTeamService) { }
 
-  setTeam(team: Team) {
-    this.teamSelected.emit(team);
+  emitSelectedTeam(selectedTeam: Team) {
+    this.teamSelected.emit(selectedTeam);
   }
 }

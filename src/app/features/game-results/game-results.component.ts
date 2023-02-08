@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Game, Team } from 'src/app/shared/interfaces/data.models';
-import { NbaService } from 'src/app/nba.service';
+import { NbaService } from '../../core/services/nba.service';
+import { Game, Team } from '../../shared/interfaces/data.models';
 
 @Component({
   selector: 'app-game-results',

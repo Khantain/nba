@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { NbaService } from '../../nba.service';
+import { ModalService } from '../../core/modal/modal.service';
+import { NbaService } from '../../core/services/nba.service';
 import { Game, Stats, Team } from '../../shared/interfaces/data.models';
-import { ModalService } from 'src/app/core/modal/modal.service';
 
 @Component({
   selector: 'app-team-stats',

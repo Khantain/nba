@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Team } from 'src/app/shared/interfaces/data.models';
-import { NbaService } from 'src/app/nba.service';
+import { Team } from '../../shared/interfaces/data.models';
+import { NbaService } from '../../core/services/nba.service';
 
 @Component({
   selector: 'app-game-stats',

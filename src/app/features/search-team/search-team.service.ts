@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { forkJoin, Observable, Subject, tap } from "rxjs";
-import { Team } from "src/app/shared/interfaces/data.models";
-import { NbaService } from "src/app/nba.service";
-import { Conference } from "src/app/shared/interfaces/conference.interface";
-import { Division } from "src/app/shared/interfaces/division.interface";
+import { NbaService } from "../../core/services/nba.service";
+import { Conference } from "../../shared/interfaces/conference.interface";
+import { Team } from "../../shared/interfaces/data.models";
+import { Division } from "../../shared/interfaces/division.interface";
 
 @Injectable()
 export class SearchTeamService {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActionButton } from 'src/app/shared/interfaces/modal/action-button.interface';
+import { ActionButton } from 'src/app/core/modal/interfaces/action-button.interface';
 import { ModalService } from '../service/modal.service';
 
 @Component({

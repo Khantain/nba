@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ModalConfig } from 'src/app/shared/interfaces/modal/modal-config.interface';
+import { ModalConfig } from '../modal/interfaces/modal-config.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {

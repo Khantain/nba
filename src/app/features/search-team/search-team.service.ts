@@ -15,12 +15,12 @@ export class SearchTeamService {
   private teamsSubject = new Subject<Team[]>();
   teams$: Observable<Team[]> = this.teamsSubject.asObservable();
 
+  private selectedConference: Conference | null = null;
+
   private allDivisions: Division[] = [];
   private selectedDivision: Division | null = null;
 
   private allTeams: Team[] = [];
-  private selectedConference: Conference | null = null;
-
 
   constructor(protected nbaService: NbaService) {
     this.init().subscribe();

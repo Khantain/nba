@@ -22,10 +22,6 @@
   border-radius: 10px;
 }
 
-button {
-  background-color: inherit;
-}
-
 button:hover {
   background-color: lightgray;
   -webkit-transition: background-color 300ms linear;

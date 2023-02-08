@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActionButton } from 'src/app/core/modal/interfaces/action-button.interface';
-import { ModalService } from '../service/modal.service';
+import { ModalService } from './modal.service';
 
 @Component({
   selector: 'app-modal',

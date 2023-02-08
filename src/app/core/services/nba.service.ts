@@ -55,7 +55,7 @@ export class NbaService {
           { headers: this.headers, params: { per_page: 12, "team_ids[]": "" + team.id } }
         );
       }),
-      map(res => res.data)
+      map(res => res.data.sort((a, b) => a.id - b.id))
     );
   }
 
